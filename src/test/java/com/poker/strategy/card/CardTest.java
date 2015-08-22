@@ -47,4 +47,15 @@ public class CardTest {
         assertThat(card1.hashCode() == card2.hashCode(), is(true));
     }
 
+    @Test
+    public void cardsShouldBeComparedByRange() {
+        Card first = new Card(TWO, PEAK);
+        Card second = new Card(TWO, PEAK);
+        Card third = new Card(THREE, PEAK);
+
+        assertThat(first.compareTo(second), is(0));
+        assertThat(first.compareTo(third), is(-1));
+        assertThat(third.compareTo(first), is(1));
+    }
+
 }

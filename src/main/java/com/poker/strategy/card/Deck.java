@@ -32,7 +32,7 @@ public class Deck {
      *
      * @param card card which will be removed
      */
-    public void getCard(@Nonnull Card card) {
+    public void removeCard(@Nonnull Card card) {
         cards.remove(card);
     }
 

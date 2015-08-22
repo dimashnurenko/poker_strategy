@@ -39,7 +39,7 @@ public class DeckTest {
     public void cardShouldBeGotFromDeck() {
         Card testCard = new Card(TWO, PEAK);
 
-        deck.getCard(testCard);
+        deck.removeCard(testCard);
 
         assertThat(deck.containCard(testCard), is(false));
     }

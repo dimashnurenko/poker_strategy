@@ -9,12 +9,12 @@ import java.util.Objects;
  *
  * @author Dmitry Shnurenko
  */
-public class Card {
+public class Card implements Comparable<Card> {
 
     private final Range range;
     private final Suit  suit;
 
-    Card(@Nonnull Range range, @Nonnull Suit suit) {
+    public Card(@Nonnull Range range, @Nonnull Suit suit) {
         this.range = range;
         this.suit = suit;
     }
@@ -49,5 +49,11 @@ public class Card {
     @Override
     public int hashCode() {
         return Objects.hash(range, suit);
+    }
+
+    /** {inheritDoc} */
+    @Override
+    public int compareTo(@Nonnull Card otherObject) {
+        return this.getRange().compareTo(otherObject.getRange());
     }
 }
