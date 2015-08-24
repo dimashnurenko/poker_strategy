@@ -6,7 +6,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.HashSet;
 
-import static com.poker.strategy.combination.CombinationType.BEST_CARD;
+import static com.poker.strategy.combination.CombinationType.TWO_PAIRS;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -14,12 +14,12 @@ import static org.junit.Assert.assertThat;
  * @author Dmitry Shnurenko
  */
 @RunWith(MockitoJUnitRunner.class)
-public class BestCardTest {
+public class TwoPairsTest {
 
     @Test
-    public void typeShouldBeReturned() {
-        BestCard bestCard = new BestCard(new HashSet<>());
+    public void twoPairsCombinationShouldBeReturned() {
+        TwoPairs twoPairs = new TwoPairs(new HashSet<>());
 
-        assertThat(bestCard.getCombinationType(), equalTo(BEST_CARD));
+        assertThat(twoPairs.getCombinationType(), equalTo(TWO_PAIRS));
     }
 }

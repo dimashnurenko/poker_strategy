@@ -18,4 +18,7 @@ public interface CardCombination {
     /** Returns type of card combination. For example {@link com.poker.strategy.combination.Pair} */
     CombinationType getCombinationType();
 
+    /** Returns the senior card of combination. */
+    Card getKicker();
+
 }

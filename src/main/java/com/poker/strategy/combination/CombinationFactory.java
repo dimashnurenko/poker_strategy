@@ -27,12 +27,16 @@ class CombinationFactory {
                 return new BestCard(cards);
             case PAIR:
                 return new Pair(cards);
+            case TWO_PAIRS:
+                return new TwoPairs(cards);
             case TRIPLET:
                 return new Triplet(cards);
             case STREET:
                 return new Street(cards);
             case FLESH:
                 return new Flesh(cards);
+            case FULL_HOUSE:
+                return new FullHouse(cards);
             case SQUARE:
                 return new Square(cards);
             case STREET_FLESH:

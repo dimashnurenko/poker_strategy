@@ -28,4 +28,10 @@ abstract class AbstractCardCombination implements CardCombination {
     public Set<Card> getCombinationCards() {
         return cards;
     }
+
+    /** {inheritDoc} */
+    @Override
+    public Card getKicker() {
+        return cards.stream().max((previous, next) -> previous.getRange().compareTo(next.getRange())).get();
+    }
 }

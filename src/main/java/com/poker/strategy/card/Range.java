@@ -4,7 +4,8 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
 /**
- * The class represents all ranges which deck of cards has. For each range, special index is associated.
+ * The class represents all ranges which deck of cards has. For each range, special index is associated. The value
+ * of index depends on value of range. The bigger range, the bigger index.
  *
  * @author Dmitry Shnurenko
  */

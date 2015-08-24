@@ -6,5 +6,5 @@ package com.poker.strategy.combination;
  * @author Dmitry Shnurenko
  */
 public enum CombinationType {
-    BEST_CARD, PAIR, TRIPLET, STREET, FLESH, SQUARE, STREET_FLESH, PORT_ROYAL, UNKNOWN
+    BEST_CARD, PAIR, TWO_PAIRS, TRIPLET, STREET, FLESH, FULL_HOUSE, SQUARE, STREET_FLESH, PORT_ROYAL, UNKNOWN
 }
