@@ -12,8 +12,9 @@ import java.util.Set;
 
 import static com.poker.strategy.card.Range.*;
 import static com.poker.strategy.card.Suit.*;
-import static com.poker.strategy.combination.CombinationType.*;
+import static com.poker.strategy.combination.CombinationName.*;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -26,9 +27,9 @@ public class CombinationProviderTest {
 
     @Before
     public void setUp() {
-        CombinationFactory factory = new CombinationFactory();
+        CombinationDeterminant determinant = new CombinationDeterminant();
 
-        provider = new CombinationProvider(factory);
+        provider = new CombinationProvider(determinant);
     }
 
     @Test
@@ -45,7 +46,7 @@ public class CombinationProviderTest {
 
         CardCombination combination = provider.getCombination(cards);
 
-        assertThat(combination.getCombinationType(), equalTo(BEST_CARD));
+        assertThat(combination.getCombinationName(), is(equalTo(BEST_CARD)));
     }
 
     @Test
@@ -62,7 +63,7 @@ public class CombinationProviderTest {
 
         CardCombination combination = provider.getCombination(cards);
 
-        assertThat(combination.getCombinationType(), equalTo(PAIR));
+        assertThat(combination.getCombinationName(), is(equalTo(PAIR)));
     }
 
     @Test
@@ -79,7 +80,7 @@ public class CombinationProviderTest {
 
         CardCombination combination = provider.getCombination(cards);
 
-        assertThat(combination.getCombinationType(), equalTo(TWO_PAIRS));
+        assertThat(combination.getCombinationName(), is(equalTo(TWO_PAIRS)));
     }
 
     @Test
@@ -96,7 +97,7 @@ public class CombinationProviderTest {
 
         CardCombination combination = provider.getCombination(cards);
 
-        assertThat(combination.getCombinationType(), equalTo(TRIPLET));
+        assertThat(combination.getCombinationName(), is(equalTo(TRIPLET)));
     }
 
     @Test
@@ -113,7 +114,7 @@ public class CombinationProviderTest {
 
         CardCombination combination = provider.getCombination(cards);
 
-        assertThat(combination.getCombinationType(), equalTo(STREET));
+        assertThat(combination.getCombinationName(), is(equalTo(STREET)));
     }
 
     @Test
@@ -130,7 +131,7 @@ public class CombinationProviderTest {
 
         CardCombination combination = provider.getCombination(cards);
 
-        assertThat(combination.getCombinationType(), equalTo(FLESH));
+        assertThat(combination.getCombinationName(), is(equalTo(FLESH)));
     }
 
     @Test
@@ -147,7 +148,7 @@ public class CombinationProviderTest {
 
         CardCombination combination = provider.getCombination(cards);
 
-        assertThat(combination.getCombinationType(), equalTo(FULL_HOUSE));
+        assertThat(combination.getCombinationName(), is(equalTo(FULL_HOUSE)));
     }
 
     @Test
@@ -164,7 +165,7 @@ public class CombinationProviderTest {
 
         CardCombination combination = provider.getCombination(cards);
 
-        assertThat(combination.getCombinationType(), equalTo(SQUARE));
+        assertThat(combination.getCombinationName(), is(equalTo(SQUARE)));
     }
 
     @Test
@@ -181,7 +182,7 @@ public class CombinationProviderTest {
 
         CardCombination combination = provider.getCombination(cards);
 
-        assertThat(combination.getCombinationType(), equalTo(STREET_FLESH));
+        assertThat(combination.getCombinationName(), is(equalTo(STREET_FLESH)));
     }
 
     @Test
@@ -198,6 +199,6 @@ public class CombinationProviderTest {
 
         CardCombination combination = provider.getCombination(cards);
 
-        assertThat(combination.getCombinationType(), equalTo(PORT_ROYAL));
+        assertThat(combination.getCombinationName(), is(equalTo(PORT_ROYAL)));
     }
 }

@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Nonnull;
 import java.util.Set;
 
-import static com.poker.strategy.combination.CombinationType.*;
-import static com.poker.strategy.combination.determinants.FiveCardsCombinationDeterminant.*;
-import static com.poker.strategy.combination.determinants.TheSameRangeDeterminant.*;
+import static com.poker.strategy.combination.CombinationName.*;
 
 /**
  * The class contains business logic which allows define combination of cards using set of cards.
@@ -19,56 +17,59 @@ import static com.poker.strategy.combination.determinants.TheSameRangeDeterminan
 @Component
 public class CombinationProvider {
 
-    private final CombinationFactory factory;
+    private final CombinationDeterminant determinant;
 
     @Autowired
-    public CombinationProvider(CombinationFactory factory) {
-        this.factory = factory;
+    public CombinationProvider(CombinationDeterminant determinant) {
+        this.determinant = determinant;
     }
 
     /**
-     * Analyzes special set of cards and returns combination which matches to current set of cards.
+     * Analyzes special set of cards and returns combination which matches to passed set of cards.
      *
      * @param cards set of cards which will be analyzed
      * @return an instance of {@link CardCombination}
      */
+    @Nonnull
     public CardCombination getCombination(@Nonnull Set<Card> cards) {
-        if (isPortRoyal(cards)) {
-            return factory.createCombination(cards, PORT_ROYAL);
+        determinant.setCardCombination(cards);
+
+        if (determinant.isPortRoyal()) {
+            return CardCombination.of(cards, PORT_ROYAL);
         }
 
-        if (isStreetFlesh(cards)) {
-            return factory.createCombination(cards, STREET_FLESH);
+        if (determinant.isStreetFlesh()) {
+            return CardCombination.of(cards, STREET_FLESH);
         }
 
-        if (isSquare(cards)) {
-            return factory.createCombination(cards, SQUARE);
+        if (determinant.isSquare()) {
+            return CardCombination.of(cards, SQUARE);
         }
 
-        if (isFullHouse(cards)) {
-            return factory.createCombination(cards, FULL_HOUSE);
+        if (determinant.isFullHouse()) {
+            return CardCombination.of(cards, FULL_HOUSE);
         }
 
-        if (isFlesh(cards)) {
-            return factory.createCombination(cards, FLESH);
+        if (determinant.isFlesh()) {
+            return CardCombination.of(cards, FLESH);
         }
 
-        if (isStreet(cards)) {
-            return factory.createCombination(cards, STREET);
+        if (determinant.isStreet()) {
+            return CardCombination.of(cards, STREET);
         }
 
-        if (isTriplet(cards)) {
-            return factory.createCombination(cards, TRIPLET);
+        if (determinant.isTriplet()) {
+            return CardCombination.of(cards, TRIPLET);
         }
 
-        if (isTwoPairs(cards)) {
-            return factory.createCombination(cards, TWO_PAIRS);
+        if (determinant.isTwoPairs()) {
+            return CardCombination.of(cards, TWO_PAIRS);
         }
 
-        if (isPair(cards)) {
-            return factory.createCombination(cards, PAIR);
+        if (determinant.isPair()) {
+            return CardCombination.of(cards, PAIR);
         }
 
-        return factory.createCombination(cards, BEST_CARD);
+        return CardCombination.of(cards, BEST_CARD);
     }
 }

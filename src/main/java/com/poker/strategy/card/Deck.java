@@ -4,8 +4,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * The class contains business logic which allows control deck of cards and do some actions with deck.
@@ -15,16 +16,18 @@ import java.util.Set;
 @Component
 public class Deck {
 
-    private final Set<Card> cards;
+    private final List<Card> cards;
 
     public Deck() {
-        this.cards = new HashSet<>();
+        this.cards = new ArrayList<>();
 
         for (Range range : Range.values()) {
             for (Suit suit : Suit.values()) {
                 cards.add(new Card(range, suit));
             }
         }
+
+        Collections.shuffle(cards);
     }
 
     /**

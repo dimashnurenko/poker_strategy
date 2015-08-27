@@ -2,23 +2,41 @@ package com.poker.strategy.combination;
 
 import com.poker.strategy.card.Card;
 
+import javax.annotation.Nonnull;
 import java.util.Set;
 
 /**
- * The main abstraction of card combination. Provides methods which allows define combination and cards which
- * it contains.
+ * The class contains information about card combination and provides business logic to get additional
+ * information about combination. The combination contains seven cards.
  *
  * @author Dmitry Shnurenko
  */
-public interface CardCombination {
+public class CardCombination {
 
-    /** Returns set of cards which combination contains. */
-    Set<Card> getCombinationCards();
+    private final Set<Card>       cards;
+    private final CombinationName combinationName;
 
-    /** Returns type of card combination. For example {@link com.poker.strategy.combination.Pair} */
-    CombinationType getCombinationType();
+    public static CardCombination of(@Nonnull Set<Card> cards, @Nonnull CombinationName combinationName) {
+        return new CardCombination(cards, combinationName);
+    }
 
-    /** Returns the senior card of combination. */
-    Card getKicker();
+    private CardCombination(@Nonnull Set<Card> cards, @Nonnull CombinationName combinationName) {
+        this.cards = cards;
+        this.combinationName = combinationName;
+    }
 
+    @Nonnull
+    public Set<Card> getCombinationCards() {
+        return cards;
+    }
+
+    @Nonnull
+    public CombinationName getCombinationName() {
+        return combinationName;
+    }
+
+    /** Returns the senior card of combination */
+    public Card getKicker() {
+        return cards.stream().max(Card::compareTo).get();
+    }
 }
