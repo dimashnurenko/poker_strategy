@@ -1,17 +1,17 @@
-package com.poker.strategy.combination;
+package com.poker.strategy.model;
 
-import com.poker.strategy.card.Card;
+import com.poker.strategy.combination.CombinationName;
 
 import javax.annotation.Nonnull;
 import java.util.Set;
 
 /**
  * The class contains information about card combination and provides business logic to get additional
- * information about combination. The combination contains seven cards.
+ * information about combination.
  *
  * @author Dmitry Shnurenko
  */
-public class CardCombination {
+public final class CardCombination {
 
     private final Set<Card>       cards;
     private final CombinationName combinationName;
@@ -31,8 +31,8 @@ public class CardCombination {
     }
 
     @Nonnull
-    public CombinationName getCombinationName() {
-        return combinationName;
+    public String getCombinationName() {
+        return combinationName.toString();
     }
 
     /** Returns the senior card of combination */

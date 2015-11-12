@@ -1,12 +1,12 @@
-package com.poker.strategy.card;
+package com.poker.strategy.model;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static com.poker.strategy.card.Range.THREE;
-import static com.poker.strategy.card.Range.TWO;
-import static com.poker.strategy.card.Suit.PEAK;
+import static com.poker.strategy.model.Range.THREE;
+import static com.poker.strategy.model.Range.TWO;
+import static com.poker.strategy.model.Suit.PEAK;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

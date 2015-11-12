@@ -7,20 +7,36 @@
     <groupId>com.poker.strategy</groupId>
     <artifactId>com.poker.strategy</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
         <spring.version>4.2.0.RELEASE</spring.version>
         <junit.version>4.12</junit.version>
+        <servlet.version>3.1.0</servlet.version>
+        <mock.mvc.version>2.6.0</mock.mvc.version>
         <mockito.version>1.9.5</mockito.version>
         <findbugs.version>3.0.0</findbugs.version>
         <jbehave.version>4.0.3</jbehave.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
         <!--spring-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
@@ -43,6 +59,13 @@
             <groupId>org.jbehave</groupId>
             <artifactId>jbehave-spring</artifactId>
             <version>${jbehave.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
 

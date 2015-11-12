@@ -1,4 +1,4 @@
-package com.poker.strategy.card;
+package com.poker.strategy.model;
 
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * @author Dmitry Shnurenko
  */
 @Component
-public class Deck {
+public final class Deck {
 
     private final List<Card> cards;
 

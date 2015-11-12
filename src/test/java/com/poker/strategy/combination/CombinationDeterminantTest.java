@@ -1,6 +1,6 @@
 package com.poker.strategy.combination;
 
-import com.poker.strategy.card.Card;
+import com.poker.strategy.model.Card;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -8,8 +8,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.HashSet;
 
-import static com.poker.strategy.card.Range.*;
-import static com.poker.strategy.card.Suit.*;
+import static com.poker.strategy.model.Range.*;
+import static com.poker.strategy.model.Suit.*;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;

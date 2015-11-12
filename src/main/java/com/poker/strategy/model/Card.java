@@ -1,4 +1,4 @@
-package com.poker.strategy.card;
+package com.poker.strategy.model;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
@@ -9,7 +9,7 @@ import java.util.Objects;
  *
  * @author Dmitry Shnurenko
  */
-public class Card implements Comparable<Card> {
+public final class Card implements Comparable<Card> {
 
     private final Range range;
     private final Suit  suit;

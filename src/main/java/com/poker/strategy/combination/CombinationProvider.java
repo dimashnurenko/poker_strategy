@@ -1,6 +1,7 @@
 package com.poker.strategy.combination;
 
-import com.poker.strategy.card.Card;
+import com.poker.strategy.model.Card;
+import com.poker.strategy.model.CardCombination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +29,7 @@ public class CombinationProvider {
      * Analyzes special set of cards and returns combination which matches to passed set of cards.
      *
      * @param cards set of cards which will be analyzed
-     * @return an instance of {@link CardCombination}
+     * @return an instance of {@link com.poker.strategy.model.CardCombination}
      */
     @Nonnull
     public CardCombination getCombination(@Nonnull Set<Card> cards) {

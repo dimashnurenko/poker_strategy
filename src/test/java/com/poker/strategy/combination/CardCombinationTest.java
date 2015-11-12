@@ -1,6 +1,7 @@
 package com.poker.strategy.combination;
 
-import com.poker.strategy.card.Card;
+import com.poker.strategy.model.Card;
+import com.poker.strategy.model.CardCombination;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,10 +10,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.poker.strategy.card.Range.TEN;
-import static com.poker.strategy.card.Range.TWO;
-import static com.poker.strategy.card.Suit.HEARTS;
-import static com.poker.strategy.card.Suit.PEAK;
+import static com.poker.strategy.model.Range.TEN;
+import static com.poker.strategy.model.Range.TWO;
+import static com.poker.strategy.model.Suit.HEARTS;
+import static com.poker.strategy.model.Suit.PEAK;
 import static com.poker.strategy.combination.CombinationName.BEST_CARD;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -44,7 +45,7 @@ public class CardCombinationTest {
 
     @Test
     public void shouldReturnNameFromCombination() {
-        assertThat(cardCombination.getCombinationName(), is(equalTo(BEST_CARD)));
+        assertThat(cardCombination.getCombinationName(), is(equalTo(BEST_CARD.toString())));
     }
 
     @Test

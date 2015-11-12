@@ -1,14 +1,14 @@
 package com.poker.strategy.combination;
 
-import com.poker.strategy.card.Card;
-import com.poker.strategy.card.Range;
+import com.poker.strategy.model.Card;
+import com.poker.strategy.model.Range;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import java.util.*;
 
-import static com.poker.strategy.card.Range.TEN;
+import static com.poker.strategy.model.Range.TEN;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
@@ -18,7 +18,7 @@ import static java.util.stream.Collectors.toList;
  * @author Dmitry Shnurenko
  */
 @Component
-public class CombinationDeterminant {
+final class CombinationDeterminant {
 
     private static final int STEP_TO_NEXT_RANGE = 1;
 
@@ -30,7 +30,7 @@ public class CombinationDeterminant {
 
     private Set<Card> cards;
 
-    public void setCardCombination(@Nonnull Set<Card> cards) {
+    void setCardCombination(@Nonnull Set<Card> cards) {
         this.cards = cards;
     }
 
@@ -39,7 +39,7 @@ public class CombinationDeterminant {
      *
      * @return <code>true</code> if combination is Pair, <code>false</code> combination is not the Pair
      */
-    public boolean isPair() {
+    boolean isPair() {
         return defineSimpleCombination(cards, TWO_CARDS_COMBINATION);
     }
 
@@ -73,7 +73,7 @@ public class CombinationDeterminant {
      *
      * @return <code>true</code> if combination is two pairs, <code>false</code> combination is not the two pairs
      */
-    public boolean isTwoPairs() {
+    boolean isTwoPairs() {
         Collection<List<Card>> combinations = getSameCardsCombinations(cards);
 
         boolean isTwoPairs = false;
@@ -90,7 +90,7 @@ public class CombinationDeterminant {
      *
      * @return <code>true</code> if combination is triplet, <code>false</code> combination is not the triplet
      */
-    public boolean isTriplet() {
+    boolean isTriplet() {
         return defineSimpleCombination(cards, THREE_CARDS_COMBINATION);
     }
 
@@ -100,7 +100,7 @@ public class CombinationDeterminant {
      *
      * @return <code>true</code> if combination is full house, <code>false</code> combination is not the full house
      */
-    public boolean isFullHouse() {
+    boolean isFullHouse() {
         final int fullHouseSizesCheckSum = 5;
 
         Collection<List<Card>> combinations = getSameCardsCombinations(cards);
@@ -119,7 +119,7 @@ public class CombinationDeterminant {
      *
      * @return <code>true</code> if combination is square, <code>false</code> combination is not the square
      */
-    public boolean isSquare() {
+    boolean isSquare() {
         return defineSimpleCombination(cards, FOUR_CARDS_COMBINATION);
     }
 
@@ -129,7 +129,7 @@ public class CombinationDeterminant {
      *
      * @return <code>true</code> combination is flesh, <code>false</code> combination is not flesh
      */
-    public boolean isFlesh() {
+    boolean isFlesh() {
         List<List<Card>> combinations = cards.stream()
                                              .collect(groupingBy(Card::getSuit))
                                              .values()
@@ -147,13 +147,13 @@ public class CombinationDeterminant {
      *
      * @return <code>true</code> combination is street, <code>false</code> combination is not street
      */
-    public boolean isStreet() {
+    boolean isStreet() {
         //TODO need improve this method
 
         List<Integer> rangeOrder = cards.stream()
                                         .sorted(Card::compareTo)
                                         .map(Card::getRange)
-                                        .map(Range::getIndex)
+                                        .map(Range::ordinal)
                                         .collect(toList());
 
         Iterator<Integer> orderIterator = rangeOrder.iterator();
@@ -191,7 +191,7 @@ public class CombinationDeterminant {
      *
      * @return <code>true</code> combination is street-flesh, <code>false</code> combination is not street-flesh
      */
-    public boolean isStreetFlesh() {
+    boolean isStreetFlesh() {
         return isStreet() && isFlesh();
     }
 
@@ -200,15 +200,22 @@ public class CombinationDeterminant {
      *
      * @return <code>true</code> combination is port-royal, <code>false</code> combination is not port-royal
      */
-    public boolean isPortRoyal() {
-        Range firstCardRange = cards.stream()
-                                    .filter(card -> card.getRange().getIndex() >= TEN.getIndex())
-                                    .sorted(Card::compareTo)
-                                    .findFirst()
-                                    .map(Card::getRange)
-                                    .get();
+    boolean isPortRoyal() {
+        List<Card> cardsHigherTen = cards.stream()
+                                         .filter(card -> card.getRange().ordinal() >= TEN.ordinal())
+                                         .collect(toList());
 
-        boolean streetStartsFromTen = TEN.equals(firstCardRange);
+        if (cardsHigherTen.isEmpty()) {
+            return false;
+        }
+
+        Range minCardRange = cardsHigherTen.stream()
+                                           .sorted(Card::compareTo)
+                                           .findFirst()
+                                           .map(Card::getRange)
+                                           .get();
+
+        boolean streetStartsFromTen = TEN.equals(minCardRange);
 
         return isStreetFlesh() && streetStartsFromTen;
     }
